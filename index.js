@@ -4,7 +4,6 @@ const app = express();
 const cors=require("cors");
 const cookieParser=require("cookie-parser");
 const PORT = 8000;
-// process.env.PORT || 
 
 app.use(
   cors()
@@ -25,7 +24,7 @@ app.use("/api", require("./routes/career"));
 app.use("/api", require('./routes/direactor'));
 app.use(express.static("uploads"));
 app.get('/',(req,res)=>{
-  res.send('hey manish')
+  res.send('hey Aditya')
 })
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Internal Server Error" } = err;
