@@ -36,6 +36,25 @@ const createTeamcat = asyncErrorHandler(async (req, res, next) => {
       return next(new ErrorHandlers(400, error.message));
     }
   });
+
+    const deleteTeamCat = asyncErrorHandler(async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const category = await TeamcatModel.findByIdAndDelete(id);
+
+        if (!category) {
+            return next(new ErrorHandlers(404, "Category not found"));
+        }
+
+        res.status(200).json({
+            message: "Category deleted successfully",
+            success: true,
+        });
+    } catch (error) {
+        return next(new ErrorHandlers(400, error.message));
+    }
+});
+
   
-  module.exports = { createTeamcat, getTeamcat };
+  module.exports = { createTeamcat, getTeamcat, deleteTeamCat };
   
